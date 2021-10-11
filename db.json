@@ -1,0 +1,22 @@
+{
+"users" : [
+      {
+        "id": 1,
+        "firstName": "Mehdi",
+        "lastName": "Hannachi",
+        "email": "mehdihannachi02@gmail.com"
+      },
+      {
+        "id": 2,
+        "firstName": "Mohamed",
+        "lastName": "Hannachi",
+        "email": "mohamedhannachi02@gmail.com"
+      },
+      {
+        "id": 3,
+        "firstName": "mariem",
+        "lastName": "Hannachi",
+        "email": "mariemhannachi02@gmail.com"
+      }
+    ]
+  }
