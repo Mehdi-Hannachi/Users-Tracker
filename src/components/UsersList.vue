@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1>Users List</h1>
+  <div class="d-flex justify-space-around flex-wrap ma-4">
     <div :key="user.id" v-for="user in users">
       <UserCard
         @delete-user="$emit('delete-user', user.id)"
@@ -24,13 +23,5 @@ export default {
     UserCard,
   },
   emits: ["delete-user"],
-
-  async created(){
-      this.users.filter((user) =>
-        user.firstName
-          .toLowerCase()
-          .includes(this.firstNameTextSeacrh.toLowerCase())
-      );
-  }
 };
 </script>

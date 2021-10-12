@@ -1,10 +1,9 @@
-
 <template>
-  <v-card class="mx-auto" max-width="400">
+  <v-card class="mt-8" max-width="400">
     <v-img
       class="white--text align-end"
       height="200px"
-      src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+      src="https://www.iconsa.ch/images/illustrations/user.png"
     >
       <v-card-title> </v-card-title>
     </v-img>
@@ -21,17 +20,10 @@
 
     <v-card-actions class="btns">
       <v-btn color="red" text @click="deleteUser(user.id)"> Delete </v-btn>
-
       <UserModal :isUpdate="true" :user="user" :updateUser="updateUser" />
     </v-card-actions>
   </v-card>
 </template>
-
-
-
-
-
-
 
 <script>
 import UserModal from "./UserModal.vue";

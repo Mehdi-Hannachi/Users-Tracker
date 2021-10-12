@@ -69,7 +69,7 @@ export default {
   methods: {
     // Adding a user route
     async addUser(user) {
-      const res = await fetch(`http://localhost:3000/users`, {
+      const res = await fetch(`api/users`, {
         method: `POST`,
         headers: {
           "Content-type": "application/json",
@@ -82,7 +82,7 @@ export default {
     // Deleting user route
     async deleteUser(id) {
       if (confirm(`Are you sure you want to delete this user ? `)) {
-        const res = await fetch(`http://localhost:3000/users/${id}`, {
+        const res = await fetch(`api/users/${id}`, {
           method: `DELETE`,
         });
         res.status === 200
@@ -92,24 +92,21 @@ export default {
     },
     // Get all users route
     async fetchUsers() {
-      const res = await fetch(`http://localhost:3000/users`);
-      // console.log(res);
+      const res = await fetch(`api/users`);
       const data = await res.json();
-      // console.log(data);
       this.users = data;
     },
 
     //Update user route
     async updateUser(id, updatedUser) {
       try {
-        await fetch(`http://localhost:3000/users/${id}`, {
+        await fetch(`api/users/${id}`, {
           method: "PUT",
           headers: {
             "Content-type": "application/json",
           },
           body: JSON.stringify(updatedUser),
         });
-        // const data = await res.json();
         this.fetchUsers();
       } catch (error) {
         console.log("error put");
@@ -127,7 +124,7 @@ export default {
       this.emailTextSearch = txt.toLowerCase();
     },
 
-    //Filter users
+    //Filter users function
     filterUsers(usersList) {
       return usersList.filter(({ firstName, lastName, email }) => {
         return (

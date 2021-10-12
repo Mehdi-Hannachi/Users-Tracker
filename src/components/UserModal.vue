@@ -1,6 +1,5 @@
-
 <template>
-  <v-row justify="center">
+  <v-row justify="end" class="mr-5">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn color="orange" dark v-bind="attrs" v-on="on"
@@ -79,6 +78,8 @@ export default {
       this.dialog = false;
     },
 
+    // Add user function
+
     addUser() {
       if (!this.firstName) {
         alert("Please enter your first name");
@@ -93,7 +94,6 @@ export default {
         return;
       }
       const newUser = {
-        // id: Math.floor(Math.random()),
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
@@ -102,6 +102,8 @@ export default {
       this.emptiedfields();
       this.closeModal();
     },
+
+    // Update user function
 
     update() {
       this.updateUser(this.user.id, {
@@ -112,6 +114,8 @@ export default {
       this.emptiedfields();
       this.closeModal();
     },
+
+    // This function is created because we want to update and add user with the same modal
 
     updateAddUser() {
       this.isUpdate ? this.update() : this.addUser();
