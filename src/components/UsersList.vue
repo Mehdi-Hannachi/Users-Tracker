@@ -2,7 +2,11 @@
   <div>
     <h1>Users List</h1>
     <div :key="user.id" v-for="user in users">
-      <UserCard @delete-user="$emit('delete-user', user.id)" :user="user" />
+      <UserCard
+        @delete-user="$emit('delete-user', user.id)"
+        :updateUser="updateUser"
+        :user="user"
+      />
     </div>
   </div>
 </template>
@@ -13,7 +17,9 @@ export default {
   name: "UsersList",
   props: {
     users: Array,
+    updateUser: Function,
   },
+
   components: {
     UserCard,
   },
