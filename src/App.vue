@@ -6,17 +6,15 @@
           alt="Vuetify Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="https://www.shareicon.net/data/2015/07/04/64248_users_256x256.png"
           transition="scale-transition"
-          width="40"
+          width="90"
         />
 
         <v-img
-          alt="Vuetify Name"
           class="shrink mt-1 hidden-sm-and-down"
           contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          min-width="150"
           width="100"
         />
       </div>
@@ -28,19 +26,24 @@
         target="_blank"
         text
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
 
     <v-main>
+      <SearchUser
+        v-on:handelFirstName="handelFirstName"
+        v-on:handelLastName="handelLastName"
+        v-on:handelEmail="handelEmail"
+      />
       <UsersList
         @delete-user="deleteUser"
         :users="users"
         :updateUser="updateUser"
+        :firstNameTextSeacrh="firstNameTextSeacrh"
       />
-      <UserModal @add-user="addUser" />
     </v-main>
+          <UserModal @add-user="addUser" />
+
   </v-app>
 </template>
 
@@ -48,15 +51,20 @@
 <script>
 import UsersList from "./components/UsersList.vue";
 import UserModal from "./components/UserModal.vue";
+import SearchUser from "./components/SearchUser.vue";
 export default {
   name: "App",
   components: {
     UsersList,
     UserModal,
+    SearchUser,
   },
   data() {
     return {
       users: [],
+      firstNameTextSeacrh: "",
+      lastNameTextSearch: "",
+      emailTextSearch: "",
     };
   },
   methods: {
@@ -92,7 +100,7 @@ export default {
       this.users = data;
     },
 
-    //Update user router
+    //Update user route
     async updateUser(id, updatedUser) {
       try {
         await fetch(`http://localhost:3000/users/${id}`, {
@@ -108,9 +116,32 @@ export default {
         console.log("error put");
       }
     },
+
+    // Get search inputs values
+
+    handelFirstName(txt) {
+      this.firstNameTextSeacrh = txt;
+    },
+    handelLastName(txt) {
+      this.lastNameTextSearch = txt;
+    },
+    handelEmail(txt) {
+      this.emailTextSearch = txt;
+    },
+
+    //Filter users
+
+    
   },
   async created() {
     this.fetchUsers();
+
+    //  this.users.filter(
+    //   (user) =>
+    //     user.firstName.toLowerCase().includes(this.firstNameTextSeacrh.toLowerCase()) &&
+    //     user.lastName.toLowerCase().includes(this.lastNameTextSeacrh.toLowerCase()) &&
+    //     user.email.toLowerCase().includes(this.emailTextSeacrh.toLowerCase())
+    // );
   },
 };
 </script>

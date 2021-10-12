@@ -1,5 +1,7 @@
 # users-tracker
 
+npm run dev 
+
 ## Project setup
 ```
 npm install

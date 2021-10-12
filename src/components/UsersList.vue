@@ -24,5 +24,13 @@ export default {
     UserCard,
   },
   emits: ["delete-user"],
+
+  async created(){
+      this.users.filter((user) =>
+        user.firstName
+          .toLowerCase()
+          .includes(this.firstNameTextSeacrh.toLowerCase())
+      );
+  }
 };
 </script>

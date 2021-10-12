@@ -3,7 +3,7 @@
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on, attrs }">
-        <v-btn color="primary" dark v-bind="attrs" v-on="on"
+        <v-btn color="orange" dark v-bind="attrs" v-on="on"
           >{{ isUpdate ? "Update" : "Add" }} User
         </v-btn>
       </template>
@@ -45,7 +45,9 @@
           <v-btn color="blue darken-1" text @click="dialog = false">
             Close
           </v-btn>
-          <v-btn color="blue darken-1" text @click="updateAddUser"> Save </v-btn>
+          <v-btn color="blue darken-1" text @click="updateAddUser">
+            Save
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -78,7 +80,6 @@ export default {
     },
 
     addUser() {
-      
       if (!this.firstName) {
         alert("Please enter your first name");
         return;
