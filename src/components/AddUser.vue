@@ -37,7 +37,7 @@ export default {
         return;
       }
       const newUser = {
-        id: Math.floor(Math.random() * 100000),
+        // id: Math.floor(Math.random()),
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,

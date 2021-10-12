@@ -6,7 +6,6 @@
       <h3>{{ user.lastName }}</h3>
       <h3>{{ user.email }}</h3>
       <button @click="deleteUser(user.id)">x</button>
-      <button @click="editUser(user.id, user)">Edit</button>
     </div>
   </div>
 </template>
@@ -18,9 +17,6 @@ export default {
     user: Object,
   },
   methods: {
-    editUser(id, user) {
-      this.$emit("edit-user", id, user);
-    },
     deleteUser(id) {
       this.$emit("delete-user", id);
     },
