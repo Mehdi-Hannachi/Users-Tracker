@@ -37,13 +37,12 @@
       />
       <UsersList
         @delete-user="deleteUser"
-        :users="users"
+        :users="filterUsers(users)"
         :updateUser="updateUser"
         :firstNameTextSeacrh="firstNameTextSeacrh"
       />
     </v-main>
-          <UserModal @add-user="addUser" />
-
+    <UserModal @add-user="addUser" />
   </v-app>
 </template>
 
@@ -118,30 +117,29 @@ export default {
     },
 
     // Get search inputs values
-
     handelFirstName(txt) {
-      this.firstNameTextSeacrh = txt;
+      this.firstNameTextSeacrh = txt.toLowerCase();
     },
     handelLastName(txt) {
-      this.lastNameTextSearch = txt;
+      this.lastNameTextSearch = txt.toLowerCase();
     },
     handelEmail(txt) {
-      this.emailTextSearch = txt;
+      this.emailTextSearch = txt.toLowerCase();
     },
 
     //Filter users
-
-    
+    filterUsers(usersList) {
+      return usersList.filter(({ firstName, lastName, email }) => {
+        return (
+          firstName.toLowerCase().includes(this.firstNameTextSeacrh) &&
+          lastName.toLowerCase().includes(this.lastNameTextSearch) &&
+          email.toLowerCase().includes(this.emailTextSearch)
+        );
+      });
+    },
   },
   async created() {
     this.fetchUsers();
-
-    //  this.users.filter(
-    //   (user) =>
-    //     user.firstName.toLowerCase().includes(this.firstNameTextSeacrh.toLowerCase()) &&
-    //     user.lastName.toLowerCase().includes(this.lastNameTextSeacrh.toLowerCase()) &&
-    //     user.email.toLowerCase().includes(this.emailTextSeacrh.toLowerCase())
-    // );
   },
 };
 </script>
